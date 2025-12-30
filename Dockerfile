@@ -1,5 +1,7 @@
 FROM eclipse-temurin:17-jdk-focal
 COPY . /app
 WORKDIR /app
-# sh -c を使わず、直接変数を書く形に変更
-CMD java -jar discord-bcdicebot.jar $T https://bcdice.trpg.net
+# Renderに「8080番ポートを使うよ」と嘘の申告をする
+EXPOSE 8080
+# 起動時に後ろでこっそりポートを開くだけの命令を追加
+CMD (python3 -m http.server 8080 &) && java -jar discord-bcdicebot.jar $T https://bcdice.trpg.net
