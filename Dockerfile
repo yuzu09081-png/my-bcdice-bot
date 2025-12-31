@@ -1,10 +1,11 @@
 FROM eclipse-temurin:17-jdk-focal
 
 WORKDIR /app
+
+# 必要なファイルをコピー
 COPY BCDiceConfiguration /app/BCDiceConfiguration
 COPY discord-bcdicebot.jar /app/discord-bcdicebot.jar
-COPY start.sh /app/start.sh
-RUN chmod +x /app/start.sh
-CMD ["sh", "/app/start.sh"]
 
-
+# 起動コマンド：start.shを使わず、ここで直接APIサーバーのURLを指定します
+ENTRYPOINT ["java", "-jar", "discord-bcdicebot.jar"]
+CMD ["$BOT_TOKEN", "https://bcdice.onlinesession.app", "1"]
