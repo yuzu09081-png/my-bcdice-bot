@@ -2,11 +2,10 @@ FROM eclipse-temurin:17-jdk-focal
 
 WORKDIR /app
 
-# ファイルのコピー
+# 必要なファイルをコピー（BCDiceConfigurationフォルダを忘れずに！）
 COPY BCDiceConfiguration /app/BCDiceConfiguration
 COPY discord-bcdicebot.jar /app/discord-bcdicebot.jar
 
-# CMDではなく ENTRYPOINT を使い、シェルを介さず直接実行します
-# $BOT_TOKEN は Render の Environment Variables から読み込まれます
+# トークンは環境変数から読み込む設定
 ENTRYPOINT ["java", "-jar", "discord-bcdicebot.jar"]
 CMD ["$BOT_TOKEN", "https://bcdice.onlinesession.app", "1"]
