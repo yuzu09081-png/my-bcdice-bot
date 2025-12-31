@@ -1,14 +1,7 @@
 #!/bin/sh
-BCDICE_API_URL=https://bcdice.onlinesession.app
+# 接続先を外部の公開APIサーバーに固定します
+API_URL="https://bcdice.onlinesession.app"
 IGNORE_ERROR=1
-# export BCDICE_PASSWORD=PleaseChangeMeIfYouUseThis
-# export BCDICE_API_SECONDARY=http://secondary.bcdice-api.yourdomain.co.jp/
-# export BCDICE_DEFAULT_SYSTEM=DiceBot
-# export BCDICE_MENTION_MODE=1
-# export BCDICE_RESULT_DISPLAY_FORMAT=V1
-# export BCDICE_SLASH_PREFIX=bcdice
-# export BCDICE_SLASH_SHORT_PREFIX=br
-# export BCDICE_STANDARD_INPUT_DISABLED=disabled
-# export BCDICE_SLASH_TABLE_SUGGESTION_DISABLED=disabled
 
-java -jar discord-bcdicebot.jar "$BOT_TOKEN" "$BCDICE_API_URL" "$IGNORE_ERROR"
+# 直接引数にトークンとURLを流し込みます
+java -jar discord-bcdicebot.jar "$BOT_TOKEN" "$API_URL" "$IGNORE_ERROR"
